@@ -10,7 +10,7 @@ To declare two types, they must be separated by a period and a space.
 
   - All types of JavaScript.
     + boolean ─ Example: true
-    + number  ─ Example: `2332`
+    + number  ─ Example: 2332
     + string  ─ Example: "Hello world!"
   
   - Others
