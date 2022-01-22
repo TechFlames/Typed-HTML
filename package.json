@@ -1,0 +1,27 @@
+{
+  "name": "thtml",
+  "version": "0.1.0",
+  "description": "You can add types to the HyperText Markup Language.",
+  "main": "main.js",
+  "scripts": {},
+  "keywords": [
+    "Typed-HyperText-Markup-Language",
+    "Typed-HTML",
+    "THTML",
+    "Typed"
+  ],
+  "author": "TypeMarkup (https://github.com/TypeMarkup)",
+  "contributors": [
+    "FlamesX-128 (https://github.com/FlamesX-128)"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TypeMarkup/Typed-HyperText-Markup-Language.git"
+  },
+  "private": false,
+  "bugs": {
+    "url": "https://github.com/TypeMarkup/Typed-HyperText-Markup-Language/issues"
+  },
+  "homepage": "https://github.com/TypeMarkup/Typed-HyperText-Markup-Language#readme"
+}
