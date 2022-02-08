@@ -1,9 +1,12 @@
 {
-  "name": "thtml",
-  "version": "0.1.0",
+  "name": "@FlamesX-128/Typed-HTML",
+  "version": "1.0.0",
   "description": "You can add types to the HyperText Markup Language.",
-  "main": "main.js",
-  "scripts": {},
+  "main": "src/main.ts",
+  "scripts": {
+    "build": "bys",
+    "dev": "nodemon -e ts --exec \"clear; npm run build\""
+  },
   "keywords": [
     "Typed-HyperText-Markup-Language",
     "Typed-HTML",
@@ -23,5 +26,11 @@
   "bugs": {
     "url": "https://github.com/TypeMarkup/Typed-HyperText-Markup-Language/issues"
   },
-  "homepage": "https://github.com/TypeMarkup/Typed-HyperText-Markup-Language#readme"
+  "homepage": "https://github.com/TypeMarkup/Typed-HyperText-Markup-Language#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@flamesx128/bys": "^2.0.2",
+    "nodemon": "^2.0.15",
+    "typescript": "4.5.4"
+  }
 }
