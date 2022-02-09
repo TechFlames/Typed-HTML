@@ -11,10 +11,10 @@
   
     /* Modules */
     "module": "commonjs",                                /* Specify what module code is generated. */
-    "rootDir": "./src",                                  /* Specify the root folder within your source files. */
+    "rootDir": "src/",                                  /* Specify the root folder within your source files. */
     "moduleResolution": "classic",                       /* Specify how TypeScript looks up a file from a given module specifier. */
     "removeComments": true,                           /* Disable emitting comments. */
-    "outDir": "./dist",
+    "outDir": "dist/",
     "types": [],
 
     /* Interop Constraints */
