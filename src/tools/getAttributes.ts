@@ -1,50 +1,70 @@
 function getAttributes(attrValue: string) {
-  const types: { name: string, params: string[] }[] = [],
+  const types: { name: string; params: string[] }[] = [],
     regex: RegExp = /([\s]|[,])+/;
 
-  let match: RegExpExecArray | null | boolean = false, pos: number = 0;
-
-  while((match = regex.exec(attrValue) || (match === false) ? true : null) != null) {
-    const open_sb: number = attrValue.indexOf("[", pos),
-      close_sb: number = attrValue.indexOf("]", pos);
+  let match: RegExpExecArray | null | boolean = false,
+    noMatch: boolean = true;
 
 
-    if ((open_sb < 0) && (close_sb < 0)) {
-      types.push({ name: attrValue, params: [] });
-
-      break;
-    };
+  while ((match = regex.exec(attrValue)) != null || noMatch) {
+    if (match === null) noMatch = false;
 
 
-    if ((open_sb < 0) && (close_sb > -1))
-      break;
+    const open_sb: number = attrValue.indexOf("[", 0),
+      close_sb: number = attrValue.indexOf("]", 0);
 
-    else if ((open_sb > -1) && (close_sb < 0))
+
+    if ((open_sb < 0) && (close_sb > -1)) {
+      console.error("The Square bracket never opens, types are ignored.");
+      
       break;
 
+    } else if ((open_sb > -1) && (close_sb < 0)) {
+      console.error("The Square bracket never closes, types are ignored.");
 
-    if (match !== true) // @ts-ignore  
-      if ((open_sb < match.index) && (match.index < close_sb)) {
-        const match = attrValue.substring(close_sb).match(regex);
-  
-        if (match) continue;
-      };
+      break;
+    }
+
+    if (open_sb < 0 && close_sb < 0) {
+      types.push({
+        name: attrValue.substring(0, (match === null) ? undefined : match.index),
+        params: [],
+      });
+
+      continue;
+    }
+
+    if (match === null) {
+      types.push({
+        params: (attrValue.substring((open_sb + 1), close_sb)).split(/([\s]|[,])+/g),
+        name: attrValue.substring(0, open_sb)
+      });
+
+      break;
+    }
+
+    if (open_sb < match.index && match.index < close_sb) {
+      if (attrValue.substring(close_sb).match(/([\s]|[,])+/)) continue;
+
+      types.push({
+        name: attrValue.substring(0, close_sb),
+        params: [],
+      });
+
+      break;
+    }
 
 
-    const attr_params: string[] = (attrValue.substring((open_sb + 1), close_sb)).split(regex),
-      attr_name: string = attrValue.substring(pos, open_sb);
+    const invalidParams = (match.index < open_sb) ? true : false;
 
-    types.push({ name: attr_name, params: attr_params });
-
-
-    if (match === true) break;
+    const params = invalidParams ? [] : (attrValue.substring((open_sb + 1), close_sb)).split(/([\s]|[,])+/g),
+      name = attrValue.substring(0, invalidParams ? match.index : open_sb);
 
 
-    attrValue = "".concat( // @ts-ignore
-      attrValue.substring(0, match.index), "|", // @ts-ignore
-      attrValue.substring(match.index + match.length)
-    );
+    types.push({ name, params });
+    attrValue = attrValue.substring(match!.index + match!.length);
   };
+
 
   return types;
 };

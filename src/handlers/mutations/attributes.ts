@@ -35,4 +35,7 @@ attributes: (record: MutationRecord): void => {
 
     else if (type.name in TypeHandler)
       TypeHandler[type.name](record, type.name, type.params);
+
+    else
+      console.warn(`The type "${type.name}" was not found.`)
 };
